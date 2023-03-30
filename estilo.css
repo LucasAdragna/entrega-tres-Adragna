@@ -1,0 +1,19 @@
+*{
+ font-family: 'Delicious Handrawn', cursiva;
+ 
+  
+}
+
+.title {
+    background-color: aquamarine;
+    padding-left: 400px;
+    font-size: calc(1.525rem + 3.3vw);
+    font-size: 30px;
+      }  
+
+
+#container{
+    background-color: #939592;
+    width: 2000px;
+    height: 500px;
+}
