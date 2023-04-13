@@ -4,7 +4,8 @@ const inputNombre= document.getElementById("NombreAuto"),
     inputTraccíon= document.getElementById("TracciónAuto"),
     inputKlm= document.getElementById("KilometrosAuto"),
     inputImg= document.getElementById("URLAuto"),
-    consecionaria= document.getElementById("container");
+    consecionaria= document.getElementById("container-grid");
+    
 
 //las caragteristicas de los autos 
 
@@ -49,18 +50,18 @@ libreta.asignarId(catalogo);
 guardarEnStorage=(catalogo)=>{
 localStorage.setItem("catalogoAutos",JSON.stringify(catalogo));}
  
-//Recibimos los datos, con forEach los recorremos asignado como un elemento
+//Recibimos los datos. Con forEach los recorremos asignado como un elemento
 //y los mostramos agregando Html.
  
   const mostrar=(datos)=>{
 
     datos.forEach(elemento =>{
-      
-      const consecionariaAut= document.createElement("article");
 
+      const consecionariaAut= document.createElement("article");
+      
       consecionariaAut.setAttribute("id","tarjetas");
       consecionariaAut.innerHTML= `
-      <img class="tarjeta-img" src="${elemento.cover}" alt="${elemento.inputNombre}" style="width:400px">
+      <img class="tarjeta-img" src="${elemento.cover}" alt="${elemento.inputNombre}" style="width:360px">
       <div class="contenido" id="${elemento.id}">
       <h5 class="nombre">${elemento.nombre}"</h5>
       <h5 class="tracción">${elemento.tracción}</h5>
@@ -75,12 +76,47 @@ localStorage.setItem("catalogoAutos",JSON.stringify(catalogo));}
 
 let enviarBtn= document.getElementById("btn-enviar");
 
-//con btn generamos la función, con el evento, bloqueo la gestión de click predeterminado.
-//gguardamos en catalogo, generamos las tarjetas y las mostramos.
+//con btn generamos la función con el evento, bloqueo la gestión de click predeterminado.
+//guardamos en catalogo, generamos las tarjetas y las mostramos.
   
-enviarBtn.addEventListener('click', (e) =>{
+enviarBtn.addEventListener('click',(e) =>{
   e.preventDefault();
-  guardarAuto(catalogo)
-  guardarEnStorage(catalogo)
-  mostrar(catalogo,consecionaria)
+  guardarAuto(catalogo);
+  guardarEnStorage(catalogo);
+  mostrar(catalogo,consecionaria);
+});
+
+//Funciones para mostrar los autos publicados desde data.json
+
+function ver(array){
+  return array;
+}
+
+//creamos las tarjetas de los autos con HTML
+
+function formarHTML(array){
+
+consecionaria.innerHTML="";
+
+array.forEach((autos) =>{
+const div=`
+<div class="card" style="width: 18rem;">
+<img src="${autos.Imagen}" class="card-img-top" alt="${autos.Marca}">
+<div class="card-body">
+<h5 class="card-title">${autos.Marca}</h5>
+<h5 class="card-title">${autos.Modelo}</h5>
+<h5 class="card-title">${autos.Kilometros}</h5>
+<p class="card-text">${autos.Precio}</p>
+<p class="card-text"><b>Disponible en nuestro Local<b></p>
+</div>
+</div>`;
+consecionaria.innerHTML+=div;
+})};
+
+fetch('data.json')
+
+.then(response =>response.json())
+.then(data=>{
+console.log(data)
+formarHTML(ver(data));
 });

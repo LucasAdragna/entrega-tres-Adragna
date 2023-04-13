@@ -1,19 +1,38 @@
 *{
  font-family: 'Delicious Handrawn', cursiva;
- 
-  
+font-size: 20px;
+
 }
 
-.title {
-    background-color: aquamarine;
-    padding-left: 400px;
-    font-size: calc(1.525rem + 3.3vw);
-    font-size: 30px;
-      }  
-
-
-#container{
-    background-color: #939592;
+ul {
+    background-color: transparent;
+    border: solid 3px rgb(189, 245, 242);
+    position: fixed;
+    height: 80px;
     width: 2000px;
-    height: 500px;
+}
+
+
+ul a{
+    color: #1baaed;
+    font-weight: 400;
+    padding-left: 10px;
+    padding-right: 800px;
+ 
+}
+
+#container-grid{
+    display: grid;
+    grid-template-rows: 25rem 25rem 25rem 25rem;
+    grid-template-columns: repeat(4 ,minmax(300px, 1fr));
+    grid-gap:2px;
+    background-color: transparent;
+    width: 1350px;
+    height: 100vw;
+}
+.figure{
+    padding: 8px;
+}
+footer{
+    padding: 13px;
 }
